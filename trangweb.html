@@ -1,0 +1,673 @@
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--color-background-primary);color:var(--color-text-primary);width:100%}
+.pg{display:none;width:100%}
+.pg.active{display:block}
+
+/* NAV */
+.topnav{position:sticky;top:0;z-index:100;background:rgba(5,10,25,.96);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.07);padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:52px}
+.brand{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:700;color:#60a5fa;cursor:pointer;display:flex;align-items:center;gap:8px}
+.navlinks{display:flex;gap:4px}
+.nbtn{background:transparent;border:1px solid rgba(255,255,255,.1);border-radius:8px;color:#94a3b8;font-size:13px;font-weight:500;padding:6px 14px;cursor:pointer;transition:all .2s;font-family:'Inter',sans-serif}
+.nbtn:hover{background:rgba(96,165,250,.12);border-color:rgba(96,165,250,.4);color:#93c5fd}
+.nbtn.active{background:rgba(37,99,235,.3);border-color:#3b82f6;color:#93c5fd}
+
+/* HOME */
+.home-wrap{width:100%;min-height:640px;background:#050a19;position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 40px 50px}
+#stars{position:absolute;inset:0;width:100%;height:100%}
+.orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:.28;animation:pulse 7s ease-in-out infinite alternate;pointer-events:none}
+.orb1{width:400px;height:400px;background:#1d4ed8;top:-120px;right:-80px}
+.orb2{width:300px;height:300px;background:#0e7490;bottom:-60px;left:-60px;animation-delay:2s}
+.orb3{width:200px;height:200px;background:#6d28d9;top:35%;left:45%;animation-delay:1.2s}
+@keyframes pulse{from{transform:scale(1)}to{transform:scale(1.2)}}
+.circuit{position:absolute;inset:0;width:100%;height:100%;opacity:.12;pointer-events:none}
+.home-inner{position:relative;z-index:2;width:100%;max-width:860px;text-align:center;display:flex;flex-direction:column;align-items:center}
+.home-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(37,99,235,.18);border:1px solid rgba(37,99,235,.35);border-radius:24px;padding:6px 18px;font-size:12px;color:#93c5fd;margin-bottom:24px;letter-spacing:.04em;text-transform:uppercase}
+.home-h1{font-family:'Space Grotesk',sans-serif;font-size:36px;font-weight:700;color:#e2e8f0;line-height:1.25;margin-bottom:12px}
+.home-h1 .accent{background:linear-gradient(90deg,#60a5fa,#34d399);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.home-author{font-size:14px;color:#475569;margin-bottom:44px}
+.home-author span{color:#64748b;font-weight:500}
+.nav-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;width:100%;max-width:680px;margin-bottom:44px}
+.nc{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:28px 20px;cursor:pointer;transition:all .28s;display:flex;flex-direction:column;align-items:center;gap:12px}
+.nc:hover{transform:translateY(-6px)}
+.nc1:hover{border-color:rgba(59,130,246,.5);background:rgba(59,130,246,.08)}
+.nc2:hover{border-color:rgba(20,184,166,.5);background:rgba(20,184,166,.08)}
+.nc3:hover{border-color:rgba(139,92,246,.5);background:rgba(139,92,246,.08)}
+.nc-ico{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:28px}
+.nc1 .nc-ico{background:rgba(59,130,246,.18)}
+.nc2 .nc-ico{background:rgba(20,184,166,.18)}
+.nc3 .nc-ico{background:rgba(139,92,246,.18)}
+.nc-lbl{font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:600;color:#cbd5e1}
+.nc-dsc{font-size:11px;color:#475569;text-align:center;line-height:1.4}
+.tech-row{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;max-width:680px}
+.tpill{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:20px;padding:5px 13px;font-size:11px;color:#64748b;display:flex;align-items:center;gap:5px}
+
+/* PAGE WRAP */
+.page-wrap{width:100%;padding:36px 40px 40px}
+.page-hero{width:100%;border-radius:20px;padding:40px 48px;margin-bottom:32px;position:relative;overflow:hidden}
+.ph-blue{background:linear-gradient(135deg,#0a1628,#0f2d5c);border:1px solid rgba(59,130,246,.2)}
+.ph-teal{background:linear-gradient(135deg,#03111a,#0c2f3b);border:1px solid rgba(20,184,166,.2)}
+.ph-purple{background:linear-gradient(135deg,#0d0a1e,#1e1040);border:1px solid rgba(139,92,246,.2)}
+.page-hero h1{font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;color:#e2e8f0;margin-bottom:6px}
+.page-hero p{font-size:14px;color:#64748b;line-height:1.6;max-width:600px}
+.ph-icon{position:absolute;right:48px;top:50%;transform:translateY(-50%);font-size:72px;opacity:.07}
+
+.sec-h{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.1em;margin:28px 0 14px;display:flex;align-items:center;gap:8px}
+
+/* PROFILE */
+.profile-card{background:var(--color-background-secondary);border:1px solid var(--color-border-tertiary);border-radius:16px;padding:28px 32px;display:flex;align-items:center;gap:28px;margin-bottom:4px}
+.avatar{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#06b6d4);display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700;color:#fff;flex-shrink:0;border:2px solid rgba(255,255,255,.15)}
+.profile-name{font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700;color:var(--color-text-primary);margin-bottom:4px}
+.profile-sub{font-size:14px;color:var(--color-text-secondary);margin-bottom:12px}
+.pills{display:flex;flex-wrap:wrap;gap:7px}
+.pill{display:inline-flex;align-items:center;gap:5px;border-radius:20px;padding:4px 12px;font-size:12px;font-weight:500}
+.pill-blue{background:rgba(37,99,235,.12);color:#60a5fa;border:1px solid rgba(37,99,235,.25)}
+.pill-teal{background:rgba(20,184,166,.12);color:#2dd4bf;border:1px solid rgba(20,184,166,.25)}
+.pill-purple{background:rgba(139,92,246,.12);color:#a78bfa;border:1px solid rgba(139,92,246,.25)}
+
+/* INFO GRID - với emoji icon */
+.info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:4px}
+.ic{background:var(--color-background-secondary);border:1px solid var(--color-border-tertiary);border-radius:12px;padding:14px 16px;display:flex;align-items:flex-start;gap:12px}
+.ic-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:20px}
+.ic-lbl{font-size:11px;color:var(--color-text-secondary);margin-bottom:3px;font-weight:500;text-transform:uppercase;letter-spacing:.04em}
+.ic-val{font-size:13px;font-weight:600;color:var(--color-text-primary);line-height:1.4}
+
+/* SKILL GRID */
+.skill-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:4px}
+.sk{background:var(--color-background-secondary);border:1px solid var(--color-border-tertiary);border-radius:12px;padding:14px 16px;display:flex;align-items:center;gap:10px;transition:border-color .2s}
+.sk:hover{border-color:var(--color-border-secondary)}
+.sk-ico{width:38px;height:38px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:20px}
+.sk-txt{font-size:13px;font-weight:500;color:var(--color-text-primary)}
+
+/* HOBBY */
+.hobby-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:4px}
+.hc{display:flex;align-items:center;gap:7px;background:var(--color-background-secondary);border:1px solid var(--color-border-tertiary);border-radius:24px;padding:7px 15px;font-size:13px;color:var(--color-text-secondary)}
+.hc .hico{font-size:16px}
+
+/* GOAL */
+.goal-box{background:var(--color-background-secondary);border-left:4px solid #2563eb;border-radius:0 14px 14px 0;padding:18px 20px;font-size:14px;color:var(--color-text-secondary);line-height:1.8;margin-bottom:4px;border-top:1px solid var(--color-border-tertiary);border-right:1px solid var(--color-border-tertiary);border-bottom:1px solid var(--color-border-tertiary)}
+.goal-box strong{color:var(--color-text-primary)}
+
+/* TIMELINE */
+.tl{position:relative;padding-left:28px;margin-bottom:4px}
+.tl::before{content:'';position:absolute;left:9px;top:10px;bottom:10px;width:2px;background:linear-gradient(to bottom,#2563eb,#0891b2,#7c3aed,#059669)}
+.tli{position:relative;margin-bottom:16px}
+.tli-dot{position:absolute;left:-23px;top:14px;width:12px;height:12px;border-radius:50%;border:2px solid var(--color-background-primary);z-index:1}
+.tli-card{background:var(--color-background-secondary);border:1px solid var(--color-border-tertiary);border-radius:14px;padding:16px 20px}
+.tli-head{font-size:11px;font-weight:600;border-radius:12px;padding:3px 11px;display:inline-flex;align-items:center;gap:5px;margin-bottom:8px}
+.tli-ttl{font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:600;color:var(--color-text-primary);margin-bottom:10px}
+.tli-list{list-style:none;display:flex;flex-direction:column;gap:5px}
+.tli-list li{font-size:13px;color:var(--color-text-secondary);display:flex;gap:8px;align-items:flex-start;line-height:1.5}
+.tli-arr{font-size:12px;flex-shrink:0;margin-top:2px}
+
+/* PROJECTS */
+.proj-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px}
+.ps{background:var(--color-background-secondary);border:1px solid var(--color-border-tertiary);border-radius:14px;padding:20px 24px;text-align:center}
+.ps-num{font-family:'Space Grotesk',sans-serif;font-size:32px;font-weight:700;line-height:1}
+.ps-lbl{font-size:12px;color:var(--color-text-secondary);margin-top:4px}
+
+.acc-item{background:var(--color-background-primary);border:1px solid var(--color-border-tertiary);border-radius:16px;margin-bottom:12px;overflow:hidden;transition:box-shadow .2s,border-color .2s;width:100%}
+.acc-item.open{border-color:var(--color-border-secondary);box-shadow:0 4px 20px rgba(0,0,0,.06)}
+.acc-trigger{width:100%;background:none;border:none;cursor:pointer;padding:18px 22px;display:flex;align-items:center;gap:14px;text-align:left;position:relative}
+.acc-bar{position:absolute;left:0;top:0;bottom:0;width:4px;border-radius:16px 0 0 16px}
+.acc-num{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:700;flex-shrink:0}
+.acc-info{flex:1}
+.acc-ttl{font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:600;color:var(--color-text-primary);line-height:1.4;margin-bottom:3px}
+.acc-sub2{font-size:12px;color:var(--color-text-secondary)}
+.acc-right{display:flex;align-items:center;gap:10px}
+.acc-tag{font-size:11px;font-weight:600;padding:3px 10px;border-radius:10px;white-space:nowrap}
+.acc-arr{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:var(--color-background-secondary);transition:transform .3s;flex-shrink:0;font-size:16px;color:var(--color-text-secondary)}
+.acc-item.open .acc-arr{transform:rotate(180deg)}
+.acc-body{max-height:0;overflow:hidden;transition:max-height .45s cubic-bezier(.4,0,.2,1)}
+.acc-body.open{max-height:3500px}
+.acc-con{padding:4px 24px 24px;border-top:1px solid var(--color-border-tertiary)}
+
+.in-h{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.09em;color:var(--color-text-secondary);margin:18px 0 10px;display:flex;align-items:center;gap:6px}
+.in-desc{border-left:3px solid;border-radius:0 12px 12px 0;padding:14px 18px;font-size:14px;line-height:1.8;margin-bottom:4px}
+.steps{list-style:none}
+.si{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--color-border-tertiary)}
+.si:last-child{border-bottom:none}
+.sn{width:24px;height:24px;border-radius:50%;color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.st{font-size:13px;color:var(--color-text-secondary);line-height:1.7}
+.st strong{color:var(--color-text-primary);font-weight:600}
+.mono{background:#060d1f;border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:16px 18px;font-family:'Courier New',monospace;font-size:12px;color:#e2e8f0;line-height:1.9;overflow-x:auto;margin-top:4px}
+.mtags{display:flex;flex-wrap:wrap;gap:7px;margin-top:4px}
+.mtag{padding:4px 11px;border-radius:14px;font-size:12px;font-weight:500}
+.res-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:8px}
+.rc{border:1px solid var(--color-border-tertiary);border-radius:12px;padding:13px 15px}
+.rl{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px}
+.rv{font-size:13px;color:var(--color-text-secondary);line-height:1.6}
+.pr-grid{display:flex;flex-direction:column}
+.pr{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--color-border-tertiary)}
+.pr:last-child{border-bottom:none}
+.pi{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:20px}
+.pt{font-size:13px;font-weight:600;color:var(--color-text-primary);margin-bottom:3px}
+.pd{font-size:12px;color:var(--color-text-secondary);line-height:1.5}
+
+/* CONCLUSION */
+.tc-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:4px}
+.tc{background:var(--color-background-secondary);border:1px solid var(--color-border-tertiary);border-radius:14px;padding:18px 20px;display:flex;gap:14px;align-items:flex-start}
+.tc-ico{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:22px}
+.tc-ttl{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:600;color:var(--color-text-primary);margin-bottom:4px}
+.tc-dsc{font-size:12px;color:var(--color-text-secondary);line-height:1.6}
+.chal{background:var(--color-background-secondary);border:1px solid var(--color-border-tertiary);border-radius:14px;padding:20px 24px;margin-bottom:4px}
+.chal-h{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px}
+.ci{display:flex;gap:10px;padding:9px 0;border-bottom:1px solid var(--color-border-tertiary);font-size:13px;color:var(--color-text-secondary);line-height:1.6;align-items:flex-start}
+.ci:last-child{border-bottom:none}
+.ci-ico{font-size:18px;flex-shrink:0;margin-top:1px}
+.feel-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:4px}
+.fc{background:var(--color-background-secondary);border:1px solid var(--color-border-tertiary);border-radius:12px;padding:16px 12px;text-align:center}
+.fe{font-size:30px;margin-bottom:7px}
+.ft{font-size:12px;color:var(--color-text-secondary);line-height:1.5}
+.finish{background:var(--color-background-secondary);border:2px solid var(--color-border-info);border-radius:16px;padding:32px 40px;text-align:center;margin-bottom:4px}
+.finish-ico{font-size:40px;margin-bottom:12px}
+.finish h3{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;color:var(--color-text-info);margin-bottom:8px}
+.finish p{font-size:14px;color:var(--color-text-secondary);line-height:1.7;max-width:560px;margin:0 auto}
+
+/* FOOTER TICKER */
+.ticker-wrap{width:100%;background:linear-gradient(135deg,#1e3a5f,#0c4a6e);border-top:1px solid rgba(96,165,250,.2);padding:10px 0;overflow:hidden;position:relative}
+.ticker-track{display:flex;white-space:nowrap;animation:ticker 18s linear infinite}
+.ticker-track:hover{animation-play-state:paused}
+.ticker-item{display:inline-flex;align-items:center;gap:10px;padding:0 32px;font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:500;color:#93c5fd;letter-spacing:.03em}
+.ticker-dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:#34d399;flex-shrink:0}
+@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+</style>
+
+<!-- NAV -->
+<div class="topnav">
+  <div class="brand" onclick="go('home')">⚡ TNKH Portfolio</div>
+  <div class="navlinks">
+    <button class="nbtn active" id="n-home" onclick="go('home')">🏠 Trang chủ</button>
+    <button class="nbtn" id="n-intro" onclick="go('intro')">👤 Giới thiệu</button>
+    <button class="nbtn" id="n-projects" onclick="go('projects')">📁 Dự án</button>
+    <button class="nbtn" id="n-conclusion" onclick="go('conclusion')">🏆 Tổng kết</button>
+  </div>
+</div>
+
+<!-- HOME -->
+<div id="pg-home" class="pg active">
+  <div class="home-wrap">
+    <canvas id="stars"></canvas>
+    <svg class="circuit" viewBox="0 0 1400 640" preserveAspectRatio="xMidYMid slice">
+      <g stroke="#2563eb" stroke-width="1" fill="none" opacity=".6">
+        <path d="M80 100 H300 V180 H520 V100 H740"/><circle cx="300" cy="100" r="4" fill="#2563eb"/>
+        <path d="M740 100 V220 H920 V120 H1100"/><circle cx="740" cy="220" r="4" fill="#06b6d4"/>
+        <path d="M200 380 H480 V460 H700 V380 H950"/><circle cx="480" cy="380" r="4" fill="#7c3aed"/>
+        <path d="M950 380 H1150 V280 H1300"/><circle cx="950" cy="280" r="4" fill="#059669"/>
+        <path d="M60 540 H240 V480 H460 V560 H620"/><circle cx="240" cy="480" r="4" fill="#2563eb"/>
+        <path d="M1200 480 V560 H980 V500"/><circle cx="1200" cy="560" r="4" fill="#06b6d4"/>
+        <rect x="292" y="92" width="16" height="16" fill="#2563eb" opacity=".5"/>
+        <rect x="512" y="92" width="16" height="16" fill="#2563eb" opacity=".5"/>
+        <rect x="472" y="372" width="16" height="16" fill="#7c3aed" opacity=".5"/>
+      </g>
+    </svg>
+    <div class="orb orb1"></div><div class="orb orb2"></div><div class="orb orb3"></div>
+    <div class="home-inner">
+      <div class="home-eyebrow">🎓 Nhập môn Công nghệ số · ĐH Công nghệ – ĐHQGHN</div>
+      <h1 class="home-h1">Nhập môn <span class="accent">Công nghệ số</span><br>& Ứng dụng Trí tuệ nhân tạo AI</h1>
+      <p class="home-author">Portfolio cá nhân của <span>Trần Ngọc Khánh Huy</span> · QH-2025 · Công nghệ Kỹ thuật Xây dựng</p>
+      <div class="nav-cards">
+        <div class="nc nc1" onclick="go('intro')">
+          <div class="nc-ico">👤</div>
+          <div class="nc-lbl">Giới thiệu</div>
+          <div class="nc-dsc">Hồ sơ cá nhân, kỹ năng & định hướng phát triển</div>
+        </div>
+        <div class="nc nc2" onclick="go('projects')">
+          <div class="nc-ico">📂</div>
+          <div class="nc-lbl">Dự án</div>
+          <div class="nc-dsc">6 bài tập hoàn thành theo từng chủ đề</div>
+        </div>
+        <div class="nc nc3" onclick="go('conclusion')">
+          <div class="nc-ico">🏆</div>
+          <div class="nc-lbl">Tổng kết</div>
+          <div class="nc-dsc">Kỹ năng tích lũy, thách thức & cảm nhận</div>
+        </div>
+      </div>
+      <div class="tech-row">
+        <span class="tpill">🏗️ BIM Technology</span>
+        <span class="tpill">🤖 AI & Prompt Engineering</span>
+        <span class="tpill">🔍 Tìm kiếm học thuật</span>
+        <span class="tpill">🤝 Cộng tác số</span>
+        <span class="tpill">🎨 Sáng tạo nội dung AI</span>
+        <span class="tpill">⚖️ Liêm chính học thuật</span>
+      </div>
+    </div>
+  </div>
+  <div class="ticker-wrap">
+    <div class="ticker-track" id="ticker">
+      <span class="ticker-item"><span class="ticker-dot"></span>Trần Ngọc Khánh Huy — Đại học Công nghệ — ĐHQGHN</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Ngành Công nghệ Kỹ thuật Xây dựng · Khóa QH-2025</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Môn Nhập môn Công nghệ số & Ứng dụng Trí tuệ nhân tạo AI</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Trần Ngọc Khánh Huy — Đại học Công nghệ — ĐHQGHN</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Ngành Công nghệ Kỹ thuật Xây dựng · Khóa QH-2025</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Môn Nhập môn Công nghệ số & Ứng dụng Trí tuệ nhân tạo AI</span>
+    </div>
+  </div>
+</div>
+
+<!-- GIỚI THIỆU -->
+<div id="pg-intro" class="pg">
+  <div class="page-wrap">
+    <div class="page-hero ph-blue">
+      <h1>👤 Giới thiệu bản thân</h1>
+      <p>Hồ sơ cá nhân, thông tin học thuật, sở thích và định hướng phát triển nghề nghiệp</p>
+      <span class="ph-icon">🎓</span>
+    </div>
+
+    <div class="profile-card">
+      <div class="avatar">TNKH</div>
+      <div>
+        <div class="profile-name">Trần Ngọc Khánh Huy</div>
+        <div class="profile-sub">Sinh viên Công nghệ Kỹ thuật Xây dựng · Trường ĐH Công nghệ – ĐHQGHN</div>
+        <div class="pills">
+          <span class="pill pill-blue">🎫 Khóa QH-2025</span>
+          <span class="pill pill-teal">📍 Hà Nam</span>
+          <span class="pill pill-purple">⭐ GPA mục tiêu 3.5+</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec-h">🪪 Thông tin cá nhân</div>
+    <div class="info-grid">
+      <div class="ic">
+        <div class="ic-icon" style="background:rgba(59,130,246,.12)">👨‍🎓</div>
+        <div><div class="ic-lbl">Họ và tên</div><div class="ic-val">Trần Ngọc Khánh Huy</div></div>
+      </div>
+      <div class="ic">
+        <div class="ic-icon" style="background:rgba(20,184,166,.12)">🪪</div>
+        <div><div class="ic-lbl">Mã sinh viên</div><div class="ic-val">25021178 <span style="font-size:11px;color:var(--color-text-secondary)"></span></div></div>
+      </div>
+      <div class="ic">
+        <div class="ic-icon" style="background:rgba(139,92,246,.12)">🏗️</div>
+        <div><div class="ic-lbl">Ngành học</div><div class="ic-val">Công nghệ Kỹ thuật Xây dựng</div></div>
+      </div>
+      <div class="ic">
+        <div class="ic-icon" style="background:rgba(245,158,11,.12)">📅</div>
+        <div><div class="ic-lbl">Khóa học</div><div class="ic-val">QH-2025</div></div>
+      </div>
+      <div class="ic">
+        <div class="ic-icon" style="background:rgba(16,185,129,.12)">🏛️</div>
+        <div><div class="ic-lbl">Trường</div><div class="ic-val">Đại học Công nghệ – ĐHQGHN</div></div>
+      </div>
+      <div class="ic">
+        <div class="ic-icon" style="background:rgba(239,68,68,.12)">📍</div>
+        <div><div class="ic-lbl">Quê quán</div><div class="ic-val">Hà Nam</div></div>
+      </div>
+    </div>
+
+    <div class="sec-h">❤️ Sở thích cá nhân</div>
+    <div class="hobby-row">
+      <span class="hc"><span class="hico">🌉</span>Kiến trúc & công trình</span>
+      <span class="hc"><span class="hico">💻</span>Công nghệ số</span>
+      <span class="hc"><span class="hico">⚽</span>Bóng đá</span>
+      <span class="hc"><span class="hico">🎵</span>Âm nhạc</span>
+      <span class="hc"><span class="hico">📚</span>Đọc sách kỹ thuật</span>
+      <span class="hc"><span class="hico">🗺️</span>Khám phá địa điểm mới</span>
+    </div>
+
+    <div class="sec-h">🎯 Mục tiêu Portfolio</div>
+    <div class="goal-box">Portfolio này được xây dựng nhằm <strong>thể hiện các kỹ năng số đã học</strong> trong môn Nhập môn Công nghệ số, lưu trữ sản phẩm cá nhân để dễ truy cập và chia sẻ, đồng thời tạo nền tảng vững chắc cho hành trình học tập và phát triển chuyên môn trong lĩnh vực <strong>Công nghệ Kỹ thuật Xây dựng</strong> thời đại số.</div>
+
+    <div class="sec-h">🧠 Kỹ năng đã học</div>
+    <div class="skill-grid">
+      <div class="sk"><div class="sk-ico" style="background:rgba(59,130,246,.12)">📁</div><div class="sk-txt">Tổ chức tệp & thư mục</div></div>
+      <div class="sk"><div class="sk-ico" style="background:rgba(20,184,166,.12)">🔍</div><div class="sk-txt">Tìm kiếm học thuật</div></div>
+      <div class="sk"><div class="sk-ico" style="background:rgba(139,92,246,.12)">✍️</div><div class="sk-txt">Viết Prompt AI</div></div>
+      <div class="sk"><div class="sk-ico" style="background:rgba(16,185,129,.12)">🤝</div><div class="sk-txt">Làm việc nhóm online</div></div>
+      <div class="sk"><div class="sk-ico" style="background:rgba(245,158,11,.12)">🎨</div><div class="sk-txt">Sáng tạo nội dung AI</div></div>
+      <div class="sk"><div class="sk-ico" style="background:rgba(239,68,68,.12)">⚖️</div><div class="sk-txt">Đạo đức công nghệ</div></div>
+    </div>
+
+    <div class="sec-h">🛣️ Định hướng phát triển</div>
+    <div class="tl">
+      <div class="tli"><div class="tli-dot" style="background:#2563eb"></div><div class="tli-card">
+        <span class="tli-head" style="background:rgba(37,99,235,.12);color:#60a5fa">📅 Năm 1 — Hiện tại</span>
+        <div class="tli-ttl">Xây dựng nền tảng số vững chắc</div>
+        <ul class="tli-list">
+          <li><span class="tli-arr" style="color:#2563eb">→</span>Thành thạo Google Workspace, Microsoft 365</li>
+          <li><span class="tli-arr" style="color:#2563eb">→</span>Khai thác AI (ChatGPT, Gemini…) hỗ trợ học tập hiệu quả</li>
+          <li><span class="tli-arr" style="color:#2563eb">→</span>Quản lý tài liệu có hệ thống — đạt GPA vững cho các năm sau</li>
+        </ul>
+      </div></div>
+      <div class="tli"><div class="tli-dot" style="background:#0891b2"></div><div class="tli-card">
+        <span class="tli-head" style="background:rgba(8,145,178,.12);color:#22d3ee">📅 Năm 2–3</span>
+        <div class="tli-ttl">Đào sâu chuyên môn kỹ thuật</div>
+        <ul class="tli-list">
+          <li><span class="tli-arr" style="color:#0891b2">→</span>Thành thạo AutoCAD, Revit, SAP2000</li>
+          <li><span class="tli-arr" style="color:#0891b2">→</span>Tìm hiểu BIM — xu hướng số hóa trong xây dựng hiện đại</li>
+          <li><span class="tli-arr" style="color:#0891b2">→</span>Tham gia CLB kỹ thuật & thực tập tại doanh nghiệp xây dựng</li>
+        </ul>
+      </div></div>
+      <div class="tli"><div class="tli-dot" style="background:#7c3aed"></div><div class="tli-card">
+        <span class="tli-head" style="background:rgba(124,58,237,.12);color:#a78bfa">📅 Năm 4–5</span>
+        <div class="tli-ttl">Kết hợp công nghệ số & xây dựng</div>
+        <ul class="tli-list">
+          <li><span class="tli-arr" style="color:#7c3aed">→</span>Nghiên cứu AI & IoT trong giám sát kết cấu công trình</li>
+          <li><span class="tli-arr" style="color:#7c3aed">→</span>Đồ án tốt nghiệp: smart building / green building</li>
+          <li><span class="tli-arr" style="color:#7c3aed">→</span>Bài báo khoa học, hội thảo nghiên cứu sinh viên</li>
+        </ul>
+      </div></div>
+      <div class="tli"><div class="tli-dot" style="background:#059669"></div><div class="tli-card">
+        <span class="tli-head" style="background:rgba(5,150,105,.12);color:#34d399">🚀 Sau tốt nghiệp</span>
+        <div class="tli-ttl">Kỹ sư xây dựng thế hệ số</div>
+        <ul class="tli-list">
+          <li><span class="tli-arr" style="color:#059669">→</span>Làm việc tại doanh nghiệp xây dựng ứng dụng công nghệ cao</li>
+          <li><span class="tli-arr" style="color:#059669">→</span>Chứng chỉ PMP, BIM Professional hoặc học thạc sĩ</li>
+          <li><span class="tli-arr" style="color:#059669">→</span>Thúc đẩy chuyển đổi số ngành xây dựng Việt Nam</li>
+        </ul>
+      </div></div>
+    </div>
+  </div>
+  <div class="ticker-wrap">
+    <div class="ticker-track">
+      <span class="ticker-item"><span class="ticker-dot"></span>Trần Ngọc Khánh Huy — Đại học Công nghệ — ĐHQGHN</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Ngành Công nghệ Kỹ thuật Xây dựng · Khóa QH-2025</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Môn Nhập môn Công nghệ số & Ứng dụng Trí tuệ nhân tạo AI</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Trần Ngọc Khánh Huy — Đại học Công nghệ — ĐHQGHN</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Ngành Công nghệ Kỹ thuật Xây dựng · Khóa QH-2025</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Môn Nhập môn Công nghệ số & Ứng dụng Trí tuệ nhân tạo AI</span>
+    </div>
+  </div>
+</div>
+
+<!-- DỰ ÁN -->
+<div id="pg-projects" class="pg">
+  <div class="page-wrap">
+    <div class="page-hero ph-teal">
+      <h1>📂 Dự án & Bài tập</h1>
+      <p>Tổng hợp 6 bài tập thực hành từ môn Nhập môn Công nghệ số — nhấn vào từng bài để xem chi tiết nội dung</p>
+      <span class="ph-icon">📁</span>
+    </div>
+    <div class="proj-stats">
+      <div class="ps"><div class="ps-num" style="color:#2dd4bf">6</div><div class="ps-lbl">✅ Bài tập hoàn thành</div></div>
+      <div class="ps"><div class="ps-num" style="color:#60a5fa">6</div><div class="ps-lbl">📚 Chủ đề khác nhau</div></div>
+      <div class="ps"><div class="ps-num" style="color:#a78bfa">100%</div><div class="ps-lbl">🎯 Tỉ lệ hoàn thành</div></div>
+    </div>
+
+    <!-- BÀI 1 -->
+    <div class="acc-item" id="a1">
+      <button class="acc-trigger" onclick="tog(1)">
+        <div class="acc-bar" style="background:#2563eb"></div>
+        <div class="acc-num" style="background:rgba(37,99,235,.12);color:#60a5fa">1</div>
+        <div class="acc-info">
+          <div class="acc-ttl">💻 Máy tính và các thiết bị ngoại vi</div>
+          <div class="acc-sub2">Thao tác cơ bản với tệp tin và thư mục</div>
+        </div>
+        <div class="acc-right">
+          <span class="acc-tag" style="background:rgba(37,99,235,.1);color:#60a5fa;border:1px solid rgba(37,99,235,.2)">Mục 1.4</span>
+          <div class="acc-arr">▼</div>
+        </div>
+      </button>
+      <div class="acc-body" id="b1"><div class="acc-con">
+        <div class="in-h">📋 Tổng quan</div>
+        <div class="in-desc" style="background:rgba(37,99,235,.06);border-color:#2563eb;color:var(--color-text-primary)">Bài thực hành trang bị kỹ năng quản lý dữ liệu nền tảng trên Windows — tạo mới, đổi tên, sao chép, di chuyển và xóa tệp tin. Đây là điều kiện cốt lõi để thiết lập môi trường làm việc số ngăn nắp và bảo mật thông tin cá nhân.</div>
+        <div class="in-h">🔢 Quy trình thực hiện (12 bước)</div>
+        <ul class="steps">
+          <li class="si"><div class="sn" style="background:#2563eb">1</div><div class="st"><strong>Mở File Explorer</strong> — Windows + E hoặc click biểu tượng thư mục trên Taskbar.</div></li>
+          <li class="si"><div class="sn" style="background:#2563eb">2</div><div class="st"><strong>Chọn ổ đĩa</strong> — Vào This PC, chọn ổ D: hoặc E: (không chứa hệ điều hành).</div></li>
+          <li class="si"><div class="sn" style="background:#2563eb">3</div><div class="st"><strong>Tạo thư mục gốc</strong> — Chuột phải → New → Folder → <strong>ThucHanh_TranNgocKhanhHuy</strong>.</div></li>
+          <li class="si"><div class="sn" style="background:#2563eb">4</div><div class="st"><strong>Tạo tệp văn bản</strong> — Chuột phải → New → Text Document → <strong>GhiChu.txt</strong>.</div></li>
+          <li class="si"><div class="sn" style="background:#2563eb">5</div><div class="st"><strong>Đổi tên (F2)</strong> → <strong>GhiChuQuanTrong.txt</strong>.</div></li>
+          <li class="si"><div class="sn" style="background:#2563eb">6</div><div class="st"><strong>Tạo thư mục con TaiLieu</strong> bên trong thư mục gốc.</div></li>
+          <li class="si"><div class="sn" style="background:#2563eb">7</div><div class="st"><strong>Sao chép</strong> — Ctrl+C → vào TaiLieu → Ctrl+V.</div></li>
+          <li class="si"><div class="sn" style="background:#2563eb">8</div><div class="st"><strong>Di chuyển</strong> — Ctrl+X tệp DiChuyen.txt → vào TaiLieu → Ctrl+V.</div></li>
+          <li class="si"><div class="sn" style="background:#2563eb">9</div><div class="st"><strong>Xóa tạm thời</strong> — Delete (vào Recycle Bin).</div></li>
+          <li class="si"><div class="sn" style="background:#2563eb">10</div><div class="st"><strong>Xóa vĩnh viễn</strong> — <strong>Shift + Delete</strong>.</div></li>
+          <li class="si"><div class="sn" style="background:#2563eb">11</div><div class="st"><strong>Khôi phục</strong> — Mở Recycle Bin → chuột phải → Restore.</div></li>
+          <li class="si"><div class="sn" style="background:#2563eb">12</div><div class="st"><strong>Chụp ảnh minh họa</strong> cấu trúc thư mục đã thiết lập.</div></li>
+        </ul>
+        <div class="in-h">📂 Cấu trúc thư mục tối ưu</div>
+        <div class="mono">└── 📁 ThucHanh_TranNgocKhanhHuy
+    ├── 📁 TaiLieu
+    │   ├── 📄 GhiChuQuanTrong.txt  <span style="color:#64748b">← bản sao chép</span>
+    │   └── 📄 DiChuyen.txt         <span style="color:#64748b">← tệp di chuyển</span>
+    └── 📄 GhiChuQuanTrong.txt     <span style="color:#64748b">← bản gốc</span></div>
+        <div class="in-h">🏷️ Quy tắc đặt tên (PascalCase)</div>
+        <div class="mtags">
+          <span class="mtag" style="background:rgba(37,99,235,.1);color:#60a5fa;border:1px solid rgba(37,99,235,.2)">🚫 Không dấu tiếng Việt</span>
+          <span class="mtag" style="background:rgba(20,184,166,.1);color:#2dd4bf;border:1px solid rgba(20,184,166,.2)">💡 Tên phản ánh nội dung</span>
+          <span class="mtag" style="background:rgba(139,92,246,.1);color:#a78bfa;border:1px solid rgba(139,92,246,.2)">✍️ Viết hoa đầu mỗi từ</span>
+          <span class="mtag" style="background:rgba(239,68,68,.1);color:#f87171;border:1px solid rgba(239,68,68,.2)">🔗 Không khoảng trắng</span>
+        </div>
+      </div></div>
+    </div>
+
+    <!-- BÀI 2 -->
+    <div class="acc-item" id="a2">
+      <button class="acc-trigger" onclick="tog(2)">
+        <div class="acc-bar" style="background:#0891b2"></div>
+        <div class="acc-num" style="background:rgba(8,145,178,.12);color:#22d3ee">2</div>
+        <div class="acc-info"><div class="acc-ttl">🔍 Khai thác dữ liệu và thông tin</div><div class="acc-sub2">Nghiên cứu & Đánh giá tài liệu học thuật về BIM</div></div>
+        <div class="acc-right"><span class="acc-tag" style="background:rgba(8,145,178,.1);color:#22d3ee;border:1px solid rgba(8,145,178,.2)">Mục 2.4</span><div class="acc-arr">▼</div></div>
+      </button>
+      <div class="acc-body" id="b2"><div class="acc-con">
+        <div class="in-h">📋 Chủ đề nghiên cứu</div>
+        <div class="in-desc" style="background:rgba(8,145,178,.06);border-color:#0891b2;color:var(--color-text-primary)">Ứng dụng công nghệ <strong>BIM (Building Information Modeling)</strong> trong ngành Xây dựng — quy trình số hóa toàn bộ dữ liệu công trình từ thiết kế → thi công → vận hành → phá dỡ.</div>
+        <div class="in-h">🔎 Chiến lược tìm kiếm</div>
+        <ul class="steps">
+          <li class="si"><div class="sn" style="background:#0891b2">1</div><div class="st"><strong>Cơ sở dữ liệu quốc tế:</strong> Google Scholar, ScienceDirect, ResearchGate</div></li>
+          <li class="si"><div class="sn" style="background:#0891b2">2</div><div class="st"><strong>Tạp chí ISI/Scopus:</strong> Automation in Construction, Intl. Journal of Project Management</div></li>
+          <li class="si"><div class="sn" style="background:#0891b2">3</div><div class="st"><strong>Sách chuyên khảo:</strong> BIM Handbook (Wiley), Routledge</div></li>
+          <li class="si"><div class="sn" style="background:#0891b2">4</div><div class="st"><strong>Boolean operators:</strong> "BIM" AND "Construction Industry" · "BIM implementation" AND "challenges"</div></li>
+        </ul>
+        <div class="in-h">⭐ Tổng hợp 10 nguồn — 3 nhóm độ tin cậy</div>
+        <div class="res-row">
+          <div class="rc" style="border-color:rgba(8,145,178,.3);background:rgba(8,145,178,.05)"><div class="rl" style="color:#22d3ee">🥇 Mức 4 — Bài báo Q1/Q2</div><div class="rv">Azhar · Bryde · Succar · Volk · Hosseini — tổng >8.000 trích dẫn ISI</div></div>
+          <div class="rc" style="border-color:rgba(139,92,246,.3);background:rgba(139,92,246,.05)"><div class="rl" style="color:#a78bfa">📚 Mức 4 — Sách chuyên khảo</div><div class="rv">Eastman BIM Handbook · Hardin & McCool · Smith — Wiley & Routledge</div></div>
+        </div>
+        <div class="rc" style="border-color:rgba(245,158,11,.3);background:rgba(245,158,11,.05)"><div class="rl" style="color:#fbbf24">🌐 Mức 3 — Báo cáo công nghiệp</div><div class="rv">Autodesk (2023) — Cloud BIM & AI · NBS (2020) — National BIM Report UK</div></div>
+        <div class="in-h">💡 Kết luận học thuật</div>
+        <div class="in-desc" style="background:var(--color-background-secondary);border-color:#0891b2;color:var(--color-text-secondary)"><strong style="color:var(--color-text-primary)">Bài báo ISI</strong> → nền lý luận · <strong style="color:var(--color-text-primary)">Sách chuyên khảo</strong> → quy trình chuẩn · <strong style="color:var(--color-text-primary)">Báo cáo công nghiệp</strong> → xu hướng Cloud BIM & AI.</div>
+      </div></div>
+    </div>
+
+    <!-- BÀI 3 -->
+    <div class="acc-item" id="a3">
+      <button class="acc-trigger" onclick="tog(3)">
+        <div class="acc-bar" style="background:#7c3aed"></div>
+        <div class="acc-num" style="background:rgba(124,58,237,.12);color:#a78bfa">3</div>
+        <div class="acc-info"><div class="acc-ttl">🤖 Tổng quan về Trí tuệ nhân tạo</div><div class="acc-sub2">Phát triển kỹ năng viết Prompt hiệu quả</div></div>
+        <div class="acc-right"><span class="acc-tag" style="background:rgba(124,58,237,.1);color:#a78bfa;border:1px solid rgba(124,58,237,.2)">Mục 3.4</span><div class="acc-arr">▼</div></div>
+      </button>
+      <div class="acc-body" id="b3"><div class="acc-con">
+        <div class="in-h">📋 Tổng quan</div>
+        <div class="in-desc" style="background:rgba(124,58,237,.06);border-color:#7c3aed;color:var(--color-text-primary)">Xây dựng và thử nghiệm kỹ thuật <strong>Prompt Engineering</strong> trên 3 tác vụ học tập: tóm tắt tài liệu, giải thích khái niệm kỹ thuật phức tạp, tạo bộ câu hỏi ôn tập theo thang Bloom.</div>
+        <div class="in-h">🧪 3 Tác vụ học tập thử nghiệm</div>
+        <ul class="steps">
+          <li class="si"><div class="sn" style="background:#7c3aed">1</div><div class="st"><strong>Tóm tắt tài liệu học thuật</strong> — Giữ lại tham số kỹ thuật và số liệu định lượng.</div></li>
+          <li class="si"><div class="sn" style="background:#7c3aed">2</div><div class="st"><strong>Giải thích khái niệm phức tạp</strong> — Kiểm soát văn phong sư phạm theo cấp độ người học.</div></li>
+          <li class="si"><div class="sn" style="background:#7c3aed">3</div><div class="st"><strong>Tạo bộ câu hỏi ôn tập</strong> — Phân loại theo thang Bloom, kèm giải thích từng phương án.</div></li>
+        </ul>
+        <div class="in-h">✨ 4 Nguyên tắc Prompt Engineering đúc kết</div>
+        <div class="pr-grid">
+          <div class="pr"><div class="pi" style="background:rgba(37,99,235,.12)">🎭</div><div><div class="pt">Role Prompting — Định hình vai trò chuyên gia</div><div class="pd">Bắt đầu bằng "Bạn là Giáo sư…" để AI phản hồi đạt chuẩn học thuật cao.</div></div></div>
+          <div class="pr"><div class="pi" style="background:rgba(20,184,166,.12)">🎯</div><div><div class="pt">Ngữ cảnh & Ràng buộc chặt chẽ</div><div class="pd">Nêu rõ mục đích và đối tượng tiếp nhận để AI tinh chỉnh thuật ngữ phù hợp.</div></div></div>
+          <div class="pr"><div class="pi" style="background:rgba(139,92,246,.12)">🔗</div><div><div class="pt">Chain-of-Thought — Chỉ dẫn từng bước</div><div class="pd">"Hãy phân tích theo 3 bước…" — khai phóng sức mạnh lập luận của AI.</div></div></div>
+          <div class="pr"><div class="pi" style="background:rgba(245,158,11,.12)">🔄</div><div><div class="pt">Socratic Feedback Loop — Vòng lặp phản biện</div><div class="pd">Không chấp nhận kết quả đầu tiên — liên tục thử thách đến khi tối ưu.</div></div></div>
+        </div>
+      </div></div>
+    </div>
+
+    <!-- BÀI 4 -->
+    <div class="acc-item" id="a4">
+      <button class="acc-trigger" onclick="tog(4)">
+        <div class="acc-bar" style="background:#059669"></div>
+        <div class="acc-num" style="background:rgba(5,150,105,.12);color:#34d399">4</div>
+        <div class="acc-info"><div class="acc-ttl">🤝 Giao tiếp và hợp tác trong môi trường số</div><div class="acc-sub2">Ứng dụng công cụ cộng tác trực tuyến cho dự án nhóm</div></div>
+        <div class="acc-right"><span class="acc-tag" style="background:rgba(5,150,105,.1);color:#34d399;border:1px solid rgba(5,150,105,.2)">Mục 4.4</span><div class="acc-arr">▼</div></div>
+      </button>
+      <div class="acc-body" id="b4"><div class="acc-con">
+        <div class="in-h">📋 Dự án nhóm</div>
+        <div class="in-desc" style="background:rgba(5,150,105,.06);border-color:#059669;color:var(--color-text-primary)">Ứng dụng AI trong <strong>tối ưu hóa luồng giao thông đô thị và hạ tầng kỹ thuật</strong> — phối hợp nhóm trực tuyến với bộ 4 công cụ số chuyên dụng.</div>
+        <div class="in-h">🛠️ Bộ 4 công cụ cộng tác</div>
+        <ul class="steps">
+          <li class="si"><div class="sn" style="background:#059669">📋</div><div class="st"><strong>Trello</strong> — Bảng Kanban 4 cột (To Do → In Progress → Review → Done), nhãn màu độ ưu tiên.</div></li>
+          <li class="si"><div class="sn" style="background:#059669">📝</div><div class="st"><strong>Google Docs</strong> — Soạn thảo báo cáo nhóm, chế độ Suggesting ghi nhận đóng góp minh bạch.</div></li>
+          <li class="si"><div class="sn" style="background:#059669">☁️</div><div class="st"><strong>Google Drive</strong> — [05_AI_GiaoThong] → [01_TaiLieu_DauVao] & [02_BanThao_VanBan].</div></li>
+          <li class="si"><div class="sn" style="background:#059669">💬</div><div class="st"><strong>Microsoft Teams</strong> — Kênh #Chung, #Kỹ-Thuật. Khung giờ vàng phản hồi: 21h–22h hằng ngày.</div></li>
+        </ul>
+        <div class="in-h">💾 Quy tắc đặt tên file nhóm</div>
+        <div class="mono">NV1_SoLieuGiaoThong_NguyenVanA_V1_20260402.xlsx
+NV2_DuThaoChuong1_NguyenVanA_V2_20260405.docx</div>
+        <div class="in-h">⚠️ 3 Thách thức & Giải pháp</div>
+        <ul class="steps">
+          <li class="si"><div class="sn" style="background:#dc2626">!</div><div class="st"><strong>Xung đột phiên bản</strong> → 1 link Google Docs duy nhất làm "Master File".</div></li>
+          <li class="si"><div class="sn" style="background:#dc2626">!</div><div class="st"><strong>Lệch pha thời gian phản hồi</strong> → Khung giờ vàng 21h–22h bắt buộc check-in.</div></li>
+          <li class="si"><div class="sn" style="background:#dc2626">!</div><div class="st"><strong>Kỹ năng không đồng đều</strong> → Họp Teams 30 phút chia sẻ màn hình hướng dẫn.</div></li>
+        </ul>
+      </div></div>
+    </div>
+
+    <!-- BÀI 5 -->
+    <div class="acc-item" id="a5">
+      <button class="acc-trigger" onclick="tog(5)">
+        <div class="acc-bar" style="background:#d97706"></div>
+        <div class="acc-num" style="background:rgba(217,119,6,.12);color:#fbbf24">5</div>
+        <div class="acc-info"><div class="acc-ttl">🎨 Sáng tạo nội dung số</div><div class="acc-sub2">Sử dụng AI hỗ trợ chuẩn bị bài thuyết trình kỹ thuật</div></div>
+        <div class="acc-right"><span class="acc-tag" style="background:rgba(217,119,6,.1);color:#fbbf24;border:1px solid rgba(217,119,6,.2)">Mục 5.4</span><div class="acc-arr">▼</div></div>
+      </button>
+      <div class="acc-body" id="b5"><div class="acc-con">
+        <div class="in-h">🎯 Nhiệm vụ sáng tạo</div>
+        <div class="in-desc" style="background:rgba(217,119,6,.06);border-color:#d97706;color:var(--color-text-primary)">Dùng ChatGPT GPT-4o xây dựng đề cương và nội dung thuyết trình nhóm về <strong>"Ứng dụng AI trong Xây dựng và Giao thông vận tải"</strong>.</div>
+        <div class="in-h">💬 Nhật ký Prompting — 2 lượt chính</div>
+        <ul class="steps">
+          <li class="si"><div class="sn" style="background:#d97706">P1</div><div class="st"><strong>Khởi tạo đề cương:</strong> "Đóng vai chuyên gia AI, viết đề cương 3 phần cho thuyết trình 15 phút về AI trong giao thông và kiểm định công trình, có ví dụ tại Việt Nam."<br><span style="color:var(--color-text-secondary)">→ Kết quả: Đèn tín hiệu thông minh TP.HCM · Drone quét 3D · AI phân tích vết nứt bê tông (CNN, YOLOv8)</span></div></li>
+          <li class="si"><div class="sn" style="background:#d97706">P2</div><div class="st"><strong>Đào sâu kỹ thuật:</strong> "Thuật toán Python nào dùng để phân tích vết nứt bê tông?"<br><span style="color:var(--color-text-secondary)">→ Kết quả: CNN · YOLOv8 · Mask R-CNN — Drone chụp ảnh → Tiền xử lý → Nhận diện</span></div></li>
+        </ul>
+        <div class="in-h">✏️ Đánh giá & Chỉnh sửa</div>
+        <div class="res-row">
+          <div class="rc" style="border-color:rgba(217,119,6,.3);background:rgba(217,119,6,.05)"><div class="rl" style="color:#fbbf24">⚠️ Hạn chế phát hiện</div><div class="rv">Ví dụ "đèn tín hiệu TP.HCM" còn chung chung, thiếu số liệu chứng minh hiệu quả.</div></div>
+          <div class="rc" style="border-color:rgba(5,150,105,.3);background:rgba(5,150,105,.05)"><div class="rl" style="color:#34d399">✅ Đã bổ sung & kiểm chứng</div><div class="rv">Tra bài báo → <strong>Hệ thống AI tại TP.HCM giảm 15% thời gian ùn tắc</strong> tại nút giao trọng điểm.</div></div>
+        </div>
+        <div class="in-h">📜 Tuyên bố sử dụng AI minh bạch</div>
+        <div class="in-desc" style="background:var(--color-background-secondary);border-color:#d97706;color:var(--color-text-secondary);font-style:italic">"Báo cáo này có sử dụng ChatGPT (GPT-4o) ngày 05/06/2026 để hỗ trợ ý tưởng ban đầu. Toàn bộ nội dung phân tích, số liệu và slide cuối đã được nhóm kiểm chứng và hoàn thiện thủ công."</div>
+      </div></div>
+    </div>
+
+    <!-- BÀI 6 -->
+    <div class="acc-item" id="a6">
+      <button class="acc-trigger" onclick="tog(6)">
+        <div class="acc-bar" style="background:#dc2626"></div>
+        <div class="acc-num" style="background:rgba(220,38,38,.12);color:#f87171">6</div>
+        <div class="acc-info"><div class="acc-ttl">⚖️ An toàn và liêm chính học thuật</div><div class="acc-sub2">Sử dụng AI có trách nhiệm trong học tập & nghiên cứu</div></div>
+        <div class="acc-right"><span class="acc-tag" style="background:rgba(220,38,38,.1);color:#f87171;border:1px solid rgba(220,38,38,.2)">Mục 6.4</span><div class="acc-arr">▼</div></div>
+      </button>
+      <div class="acc-body" id="b6"><div class="acc-con">
+        <div class="in-h">🏫 Chính sách AI của nhà trường</div>
+        <div class="in-desc" style="background:rgba(220,38,38,.06);border-color:#dc2626;color:var(--color-text-primary)"><strong>✔ Cho phép có điều kiện</strong> · <strong>📋 Yêu cầu minh bạch</strong> khai báo tên công cụ & phạm vi · <strong>🚫 Nghiêm cấm AI-giarism</strong> (copy-paste nguyên văn).</div>
+        <div class="in-h">⚖️ Ranh giới hỗ trợ vs Gian lận</div>
+        <ul class="steps">
+          <li class="si"><div class="sn" style="background:#059669">✔</div><div class="st"><strong>Hỗ trợ hợp lý:</strong> AI giải thích khái niệm, sửa ngữ pháp, gợi ý từ khóa — đóng vai "gia sư".</div></li>
+          <li class="si"><div class="sn" style="background:#dc2626">✘</div><div class="st"><strong>Gian lận:</strong> AI viết toàn bộ bài / giải đề thi / code từ A-Z rồi copy-paste.</div></li>
+          <li class="si"><div class="sn" style="background:#d97706">⚠</div><div class="st"><strong>"Đạo văn kép":</strong> Lấy nguyên văn AI không trích dẫn = vi phạm bản quyền + đạo văn.</div></li>
+        </ul>
+        <div class="in-h">🥇 6 Nguyên tắc vàng cá nhân</div>
+        <div class="pr-grid">
+          <div class="pr"><div class="pi" style="background:rgba(37,99,235,.12)">🧠</div><div><div class="pt">Não người đi trước (Human-First)</div><div class="pd">Tự lập dàn ý / viết code thô trước khi mở AI.</div></div></div>
+          <div class="pr"><div class="pi" style="background:rgba(20,184,166,.12)">🔎</div><div><div class="pt">Kiểm chứng tối cao (Fact-Checking)</div><div class="pd">Mọi số liệu từ AI phải đối chiếu với sách giáo trình, bài báo khoa học.</div></div></div>
+          <div class="pr"><div class="pi" style="background:rgba(139,92,246,.12)">👁️</div><div><div class="pt">Minh bạch tuyệt đối (Transparency)</div><div class="pd">Khai báo rõ ở cuối mỗi bài: dùng AI không, bước nào, công cụ gì.</div></div></div>
+          <div class="pr"><div class="pi" style="background:rgba(245,158,11,.12)">✍️</div><div><div class="pt">Không Copy-Paste (No Raw Copy)</div><div class="pd">Tự viết lại bằng ngôn ngữ và hiểu biết của bản thân.</div></div></div>
+          <div class="pr"><div class="pi" style="background:rgba(220,38,38,.12)">🔒</div><div><div class="pt">Bảo mật thông tin (Data Privacy)</div><div class="pd">Không upload tài liệu nội bộ, đề thi, thông tin cá nhân lên AI công cộng.</div></div></div>
+          <div class="pr"><div class="pi" style="background:rgba(5,150,105,.12)">🎯</div><div><div class="pt">Tập trung kỹ năng cốt lõi (Skill-Focused)</div><div class="pd">Dùng AI tăng hiệu suất, không trốn tránh rèn luyện kỹ năng nền tảng.</div></div></div>
+        </div>
+      </div></div>
+    </div>
+  </div>
+  <div class="ticker-wrap">
+    <div class="ticker-track">
+      <span class="ticker-item"><span class="ticker-dot"></span>Trần Ngọc Khánh Huy — Đại học Công nghệ — ĐHQGHN</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Ngành Công nghệ Kỹ thuật Xây dựng · Khóa QH-2025</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Môn Nhập môn Công nghệ số & Ứng dụng Trí tuệ nhân tạo AI</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Trần Ngọc Khánh Huy — Đại học Công nghệ — ĐHQGHN</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Ngành Công nghệ Kỹ thuật Xây dựng · Khóa QH-2025</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Môn Nhập môn Công nghệ số & Ứng dụng Trí tuệ nhân tạo AI</span>
+    </div>
+  </div>
+</div>
+
+<!-- TỔNG KẾT -->
+<div id="pg-conclusion" class="pg">
+  <div class="page-wrap">
+    <div class="page-hero ph-purple">
+      <h1>🏆 Tổng kết hành trình</h1>
+      <p>Kiến thức & kỹ năng tích lũy, những thách thức đã vượt qua và cảm nhận cá nhân qua dự án Portfolio này</p>
+      <span class="ph-icon">🎖️</span>
+    </div>
+
+    <div class="sec-h">⭐ Kiến thức & Kỹ năng nổi bật</div>
+    <div class="tc-grid">
+      <div class="tc"><div class="tc-ico" style="background:rgba(37,99,235,.12)">📁</div><div><div class="tc-ttl">Quản lý tệp & Tổ chức dữ liệu</div><div class="tc-dsc">Cấu trúc thư mục khoa học, chuẩn PascalCase, thành thạo Copy / Cut / Paste / Delete / Restore.</div></div></div>
+      <div class="tc"><div class="tc-ico" style="background:rgba(20,184,166,.12)">🔍</div><div><div class="tc-ttl">Tư duy tìm kiếm & Đánh giá học thuật</div><div class="tc-dsc">Boolean operators, phân loại nguồn tin 5 tiêu chí, tổng hợp 10 tài liệu Q1/Q2 về BIM.</div></div></div>
+      <div class="tc"><div class="tc-ico" style="background:rgba(139,92,246,.12)">✨</div><div><div class="tc-ttl">Kỹ năng viết Prompt hiệu quả</div><div class="tc-dsc">4 nguyên tắc: Role Prompting · Ngữ cảnh & Ràng buộc · Chain-of-Thought · Socratic Loop.</div></div></div>
+      <div class="tc"><div class="tc-ico" style="background:rgba(5,150,105,.12)">🤝</div><div><div class="tc-ttl">Cộng tác số & Làm việc nhóm</div><div class="tc-dsc">Trello · Google Workspace · Microsoft Teams — Master File & khung giờ vàng 21h–22h.</div></div></div>
+      <div class="tc"><div class="tc-ico" style="background:rgba(245,158,11,.12)">🎨</div><div><div class="tc-ttl">Sáng tạo nội dung với AI</div><div class="tc-dsc">Ứng dụng AI tạo sinh vào thực tiễn kỹ thuật, bổ sung nguồn chính thống, trích dẫn minh bạch.</div></div></div>
+      <div class="tc"><div class="tc-ico" style="background:rgba(220,38,38,.12)">⚖️</div><div><div class="tc-ttl">Đạo đức & Liêm chính học thuật</div><div class="tc-dsc">6 nguyên tắc vàng cá nhân, hiểu rõ ranh giới giữa hỗ trợ học tập và gian lận.</div></div></div>
+    </div>
+
+    <div class="sec-h">⚡ Thách thức đã vượt qua</div>
+    <div class="chal">
+      <div class="chal-h">⚡ Những khó khăn trong quá trình thực hiện</div>
+      <div class="ci"><span class="ci-ico">🧩</span><span><strong>Chọn công cụ phù hợp</strong> — Ban đầu bị choáng ngợp với quá nhiều lựa chọn; học cách thử nghiệm và so sánh để tìm công cụ tối ưu.</span></div>
+      <div class="ci"><span class="ci-ico">💬</span><span><strong>Viết Prompt ban đầu</strong> — Kết quả AI thường không như mong đợi; cần nhiều vòng thử-sai để hiểu cách diễn đạt đúng ý.</span></div>
+      <div class="ci"><span class="ci-ico">📂</span><span><strong>Quản lý tệp nhóm</strong> — Xung đột phiên bản khi làm việc nhóm; giải quyết bằng quy tắc Master File duy nhất.</span></div>
+      <div class="ci"><span class="ci-ico">🔎</span><span><strong>Kiểm chứng thông tin AI</strong> — AI đôi khi thiếu số liệu thực tế; học cách đối chiếu với nguồn học thuật chính thống.</span></div>
+    </div>
+
+    <div class="sec-h">😊 Cảm nhận cá nhân</div>
+    <div class="feel-grid">
+      <div class="fc"><div class="fe">🚀</div><div class="ft">Tự tin hơn khi dùng công cụ công nghệ trong học tập</div></div>
+      <div class="fc"><div class="fe">🏗️</div><div class="ft">Thấy rõ tiềm năng của AI trong ngành Xây dựng hiện đại</div></div>
+      <div class="fc"><div class="fe">💪</div><div class="ft">Kiên trì hơn khi đối mặt với kỹ năng và công cụ mới</div></div>
+      <div class="fc"><div class="fe">⚖️</div><div class="ft">Ý thức hơn về trách nhiệm đạo đức khi sử dụng AI</div></div>
+    </div>
+
+    <div class="finish">
+      <div class="finish-ico">🏆</div>
+      <h3>Portfolio hoàn thành!</h3>
+      <p>Minh chứng cho hành trình học tập nghiêm túc và có trách nhiệm của <strong>Trần Ngọc Khánh Huy</strong> trong môn <strong>Nhập môn Công nghệ số & Ứng dụng Trí tuệ nhân tạo AI</strong>.</p>
+    </div>
+  </div>
+  <div class="ticker-wrap">
+    <div class="ticker-track">
+      <span class="ticker-item"><span class="ticker-dot"></span>Trần Ngọc Khánh Huy — Đại học Công nghệ — ĐHQGHN</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Ngành Công nghệ Kỹ thuật Xây dựng · Khóa QH-2025</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Môn Nhập môn Công nghệ số & Ứng dụng Trí tuệ nhân tạo AI</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Trần Ngọc Khánh Huy — Đại học Công nghệ — ĐHQGHN</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Ngành Công nghệ Kỹ thuật Xây dựng · Khóa QH-2025</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Môn Nhập môn Công nghệ số & Ứng dụng Trí tuệ nhân tạo AI</span>
+    </div>
+  </div>
+</div>
+
+<script>
+const IDS=['home','intro','projects','conclusion'];
+function go(id){
+  IDS.forEach(p=>{const e=document.getElementById('pg-'+p);if(e)e.classList.remove('active')});
+  const t=document.getElementById('pg-'+id);if(t)t.classList.add('active');
+  document.querySelectorAll('.nbtn').forEach(b=>b.classList.remove('active'));
+  const nb=document.getElementById('n-'+id);if(nb)nb.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function tog(n){
+  const i=document.getElementById('a'+n),b=document.getElementById('b'+n);
+  if(!i)return;
+  const o=i.classList.contains('open');
+  i.classList.toggle('open',!o);b.classList.toggle('open',!o);
+}
+window.addEventListener('load',()=>{
+  const c=document.getElementById('stars');if(!c)return;
+  const ctx=c.getContext('2d');
+  const w=c.parentElement.offsetWidth||1400,h=640;
+  c.width=w;c.height=h;
+  for(let i=0;i<250;i++){
+    const x=Math.random()*w,y=Math.random()*h,r=Math.random()*1.3+.2,a=Math.random()*.65+.1;
+    ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fillStyle=`rgba(255,255,255,${a})`;ctx.fill();
+  }
+  for(let i=0;i<50;i++){
+    const x=Math.random()*w,y=Math.random()*h,r=Math.random()*.7+1.5;
+    ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fillStyle=`rgba(147,197,253,${Math.random()*.5+.2})`;ctx.fill();
+  }
+});
+</script>
